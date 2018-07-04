@@ -8,9 +8,14 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
     if @todo.save
       redirect_to todo_path(@todo)
+      flash[:notice] = "Todo was created successfully!"
     else
       render 'new'
     end
+  end
+
+  def show
+    @todo = Todo.find(params[:id])
   end
 
   private
